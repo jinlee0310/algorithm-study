@@ -95,17 +95,20 @@ const solution = (input) => {
   const N = Number(input[0]);
   const heap = new Heap();
 
+  const answer = [];
   for (let i = 1; i <= N; i++) {
     const num = Number(input[i]);
     if (num === 0) {
       const node = heap.heappop();
-      console.log(node.value * node.sign);
+      // console.log(node.value * node.sign);
+      answer.push(node.value * node.sign);
     } else {
       const value = Math.abs(num);
       const sign = num < 0 ? -1 : 1;
       heap.heappush(value, sign);
     }
   }
+  console.log(answer.join("\n"));
 };
 
 solution(input);
