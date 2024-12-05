@@ -107,32 +107,6 @@ const findBiggestBlock = (graph, N) => {
 };
 
 const gravity = (graph, N) => {
-  // for (let c = 0; c < N; c++) {
-  //   let r = 0;
-  //   let blocks = [];
-  //   while (r < N) {
-  //     if (graph[r][c] >= 0 && r < N - 1) {
-  //       blocks.push(graph[r][c]);
-  //       graph[r][c] = -2;
-  //     } else if (graph[r][c] === -1 && r > 0) {
-  //       let i = blocks.length - 1;
-  //       for (let k = r - 1; k > r - 1 - blocks.length; k--) {
-  //         graph[k][c] = blocks[i];
-  //         i--;
-  //       }
-  //       blocks = [];
-  //     }
-  //     r++;
-  //     if (r === 5 && blocks.length > 0) {
-  //       let i = blocks.length - 1;
-  //       for (let k = r - 1; k > r - 1 - blocks.length; k--) {
-  //         graph[k][c] = blocks[i];
-  //         i--;
-  //       }
-  //       blocks = [];
-  //     }
-  //   }
-  // }
   for (let c = 0; c < N; c++) {
     let emptyRow = -1;
     for (let r = N - 1; r >= 0; r--) {
