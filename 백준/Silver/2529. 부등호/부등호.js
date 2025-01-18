@@ -12,7 +12,13 @@ const input = fs
 
 const backtracking = (results, numbers, n, symbols) => {
   if (symbols.length === n) {
-    results.push(numbers.join(""));
+    const str = numbers.join("");
+    if (Number(results[0] < Number(str))) {
+      results[0] = str;
+    }
+    if (Number(results[1]) > Number(str)) {
+      results[1] = str;
+    }
     return;
   }
 
@@ -48,21 +54,10 @@ const solution = (input) => {
   const n = Number(input[0]);
   const symbols = input[1].split(" ");
 
-  const results = [];
+  const results = [0, Infinity];
   backtracking(results, [], -1, symbols);
-  let max = 0,
-    min = Infinity;
 
-  for (let result of results) {
-    if (Number(result) > Number(max)) {
-      max = result;
-    }
-    if (Number(result) < Number(min)) {
-      min = result;
-    }
-  }
-  console.log(max);
-  console.log(min);
+  console.log(results.join("\n"));
 };
 
 solution(input);
