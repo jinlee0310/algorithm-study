@@ -17,11 +17,8 @@ const solution = (input) => {
     const n = Number(i);
     set.add(n % 42);
   }
-  let cnt = 0;
-  for (let _ of set) {
-    cnt++;
-  }
-  console.log(cnt);
+
+  console.log(set.size);
 };
 
 solution(input);
