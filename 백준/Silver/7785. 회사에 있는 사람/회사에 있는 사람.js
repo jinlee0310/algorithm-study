@@ -22,9 +22,8 @@ const solution = (input) => {
       set.delete(name);
     }
   }
-  const arr = Array.from(set);
-  arr.sort().reverse();
-  console.log(arr.join("\n"));
+
+  console.log(Array.from(set).sort().reverse().join("\n"));
 };
 
 solution(input);
