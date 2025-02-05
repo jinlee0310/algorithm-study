@@ -1,41 +1,32 @@
-const fs = require("fs");
-const path = require("path");
-const input = fs
-  .readFileSync(
-    process.platform === "linux"
-      ? "/dev/stdin"
-      : path.join(__dirname, "/input.txt"),
-  )
-  .toString()
-  .trim()
-  .split("\n");
+const fs = require('fs');
 
-const solution = (input) => {
-  const N = Number(input[0]);
-  const stack = [];
-  const answer = [];
-  for (let i = 1; i <= N; i++) {
-    const [op, num] = input[i].split(" ").map(Number);
-    switch (op) {
-      case 1:
-        stack.push(num);
-        break;
-      case 2:
-        const el = stack.pop();
-        answer.push(el ? el : -1);
-        break;
-      case 3:
-        answer.push(stack.length);
-        break;
-      case 4:
-        answer.push(stack.length > 0 ? 0 : 1);
-        break;
-      case 5:
-        const peak = stack[stack.length - 1];
-        answer.push(peak ? peak : -1);
-    }
-  }
-  console.log(answer.join("\n"));
-};
+const input = fs.readFileSync(0).toString().trim().split('\n');
+const N = parseInt(input[0], 10);
 
-solution(input);
+const stack = [];
+const log = [];
+for (let i = 1; i <= N; i++) {
+	const cmdStr = input[i];
+	const blankIdx = cmdStr.indexOf(' ');
+	const cmd = parseInt(
+		blankIdx !== -1 ? cmdStr.substring(0, blankIdx) : cmdStr,
+		10,
+	);
+	const x =
+		blankIdx !== -1 ? parseInt(cmdStr.substring(blankIdx + 1), 10) : 0;
+
+	if (cmd === 1) {
+		stack.push(x);
+	} else if (cmd === 2) {
+		const v = stack.pop();
+		log.push(v || -1);
+	} else if (cmd === 3) {
+		log.push(stack.length);
+	} else if (cmd === 4) {
+		log.push(stack.length === 0 ? 1 : 0);
+	} else {
+		log.push(stack.length === 0 ? -1 : stack[stack.length - 1]);
+	}
+}
+
+console.log(log.join('\n'));
