@@ -10,9 +10,9 @@ const input = fs
   .trim()
   .split("\n");
 
-const backtracking = (symbols, numbers, pointer, result, results) => {
+const backtracking = (symbols, numbers, pointer, result, callback) => {
   if (pointer === numbers.length) {
-    results.push(result);
+    callback(result);
     return;
   }
 
@@ -25,7 +25,7 @@ const backtracking = (symbols, numbers, pointer, result, results) => {
           numbers,
           pointer + 1,
           result + numbers[pointer],
-          results,
+          callback,
         );
       } else if (i === 1) {
         backtracking(
@@ -33,7 +33,7 @@ const backtracking = (symbols, numbers, pointer, result, results) => {
           numbers,
           pointer + 1,
           result - numbers[pointer],
-          results,
+          callback,
         );
       } else if (i === 2) {
         backtracking(
@@ -41,7 +41,7 @@ const backtracking = (symbols, numbers, pointer, result, results) => {
           numbers,
           pointer + 1,
           result * numbers[pointer],
-          results,
+          callback,
         );
       } else {
         if (result > 0) {
@@ -50,7 +50,7 @@ const backtracking = (symbols, numbers, pointer, result, results) => {
             numbers,
             pointer + 1,
             Math.floor(result / numbers[pointer]),
-            results,
+            callback,
           );
         } else {
           backtracking(
@@ -58,7 +58,7 @@ const backtracking = (symbols, numbers, pointer, result, results) => {
             numbers,
             pointer + 1,
             Math.floor((result * -1) / numbers[pointer]) * -1,
-            results,
+            callback,
           );
         }
       }
@@ -73,9 +73,12 @@ const solution = (input) => {
   const numbers = input[1].split(" ").map(Number);
   const symbols = input[2].split(" ").map(Number);
 
-  const results = [];
-  backtracking(symbols, numbers, 1, numbers[0], results);
-  console.log(`${Math.max(...results)}\n${Math.min(...results)}`);
+  let min = Infinity;
+  let max = -Infinity;
+  backtracking(symbols, numbers, 1, numbers[0], (result) => {
+    (min = Math.min(min, result)), (max = Math.max(max, result));
+  });
+  console.log(`${max}\n${min}`);
 };
 
 solution(input);
