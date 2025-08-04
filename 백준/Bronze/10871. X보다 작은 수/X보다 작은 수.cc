@@ -1,13 +1,12 @@
 #include <iostream>
-
 using namespace std;
 
-int main()
-{
-    int N,X;
-    cin >> N >> X;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    int arr[N];
+    int N, X;
+    cin >> N >> X;
 
     for (int i = 0; i < N; i++) {
         int a;
@@ -17,7 +16,5 @@ int main()
         }
     }
     cout << '\n';
-
-
     return 0;
 }
