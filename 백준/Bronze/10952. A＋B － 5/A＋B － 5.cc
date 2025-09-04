@@ -4,14 +4,13 @@ using namespace std;
 
 int main()
 {
-    while(true){
-        int a,b;
-        cin >> a >> b;
+  int A,B;
+  while(1){
+    cin >> A >> B;
+    if(A==0 && B==0) break;
 
-        if(a==0 && b==0) break;
+    cout << A+B << "\n";
+  }
 
-        cout << a+b << "\n";
-    }
-
-    return 0;
+  return 0;
 }
